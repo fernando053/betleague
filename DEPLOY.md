@@ -24,7 +24,7 @@
 2. Clica em **New Project**
 3. Configura:
    - **Organization:** cria uma ou usa existente
-   - **Project Name:** `betleague`
+   - **Project Name:** `betnando`
    - **Database Password:** escolhe uma password forte (guarda!)
    - **Region:** West Europe (Amsterdam)
 4. Cria o projeto
@@ -38,7 +38,7 @@
 
 1. Vai a **https://vercel.com** e faz login com GitHub
 2. Clica em **Add New...** → **Project**
-3. Seleciona o repositório `fernando053/betleague`
+3. Seleciona o repositório `fernando053/betnando`
 4. Configura:
    - **Framework Preset:** Outro
    - **Root Directory:** `.` (deixa vazio ou `.`)
@@ -48,7 +48,7 @@
    - `DATABASE_URL` → cola a URI do Supabase (passo 1)
    - `JWT_SECRET` → gera uma string longa (ex: `bl-minha-chave-secreta-super-longa-2026`)
    - `CRON_SECRET` → gera outra string (ex: `bl-cron-secret-super-longo-2026`)
-   - `FRONTEND_URL` → `https://betleague.vercel.app`
+   - `FRONTEND_URL` → `https://betnando.vercel.app`
    - `PORT` → `3001`
    - `NODE_ENV` → `production`
 6. Clica **Deploy**
@@ -199,14 +199,14 @@ ON CONFLICT (email) DO NOTHING;
 2. Cria dois cron jobs:
 
 ### Job 1: Sync de jogos (a cada 30 minutos)
-- **URL:** `https://betleague.vercel.app/api/cron/sync`
+- **URL:** `https://betnando.vercel.app/api/cron/sync`
 - **Method:** GET
 - **Headers:**
   - `Authorization: Bearer [O_TEU_CRON_SECRET]`
 - **Schedule:** `*/30 * * * *` (a cada 30 minutos)
 
 ### Job 2: Liquidar apostas (a cada 2 minutos)
-- **URL:** `https://betleague.vercel.app/api/cron/settle`
+- **URL:** `https://betnando.vercel.app/api/cron/settle`
 - **Method:** GET
 - **Headers:**
   - `Authorization: Bearer [O_TEU_CRON_SECRET]`
@@ -239,7 +239,7 @@ ON CONFLICT (email) DO NOTHING;
 | `DATABASE_URL` | URI do Supabase |
 | `JWT_SECRET` | String longa aleatória |
 | `CRON_SECRET` | String longa aleatória |
-| `FRONTEND_URL` | `https://betleague.vercel.app` |
+| `FRONTEND_URL` | `https://betnando.vercel.app` |
 | `PORT` | `3001` |
 | `NODE_ENV` | `production` |
 

@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: betleague
+      POSTGRES_DB: betnando
     ports:
       - "5432:5432"
     volumes:
@@ -22,9 +22,9 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
-    container_name: betleague-api
+    container_name: betnando-api
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/betleague?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/betnando?schema=public
       JWT_SECRET: ${JWT_SECRET:-your-secret-key}
       PORT: 3001
       FRONTEND_URL: http://localhost:5173
@@ -41,7 +41,7 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
-    container_name: betleague-web
+    container_name: betnando-web
     ports:
       - "5173:5173"
     depends_on:

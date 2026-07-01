@@ -32,7 +32,7 @@ football betting soccer virtual-betting fantasy-football sports react nodejs typ
 
 ## 🌐 Live Demo
 
-🔗 **[betleague.vercel.app](https://betleague.vercel.app)**
+🔗 **[betnando.vercel.app](https://betnando.vercel.app)**
 
 > ⚠️ Free tier deployment. First load may take 30-60 seconds (cold start).
 
@@ -69,7 +69,7 @@ football betting soccer virtual-betting fantasy-football sports react nodejs typ
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      BETLEAGUE ARCHITECTURE                      │
+│                      BETNANDO ARCHITECTURE                      │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  ┌─────────────────┐     ┌─────────────────┐                    │
@@ -233,8 +233,8 @@ football betting soccer virtual-betting fantasy-football sports react nodejs typ
 
 ```bash
 # Clone the repository
-git clone https://github.com/fernando053/betleague.git
-cd betleague
+git clone https://github.com/fernando053/betNANDO.git
+cd betNANDO
 
 # Start PostgreSQL + API + Web
 docker-compose up -d
@@ -250,8 +250,8 @@ npx prisma db seed
 
 ```bash
 # Clone the repository
-git clone https://github.com/fernando053/betleague.git
-cd betleague
+git clone https://github.com/fernando053/betNANDO.git
+cd betNANDO
 
 # Install dependencies
 npm install
@@ -295,7 +295,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-betleague/
+betNANDO/
 ├── 📂 apps/
 │   ├── 📂 api/                    # Express Backend
 │   │   ├── 📂 prisma/
@@ -555,7 +555,7 @@ npm run test:web
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=fernando053/betleague&type=Date)](https://star-history.com/#fernando053/betleague&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=fernando053/betNANDO&type=Date)](https://star-history.com/#fernando053/betNANDO&Date)
 
 ---
 
@@ -566,7 +566,7 @@ Contributions are welcome! This project is a great way to learn full-stack devel
 ### How to Contribute
 
 1. **Fork** the repository
-2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/betleague.git`
+2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/betNANDO.git`
 3. **Create** a feature branch: `git checkout -b feature/amazing-feature`
 4. **Make** your changes
 5. **Test** your changes: `npm test`
@@ -589,10 +589,10 @@ Contributions are welcome! This project is a great way to learn full-stack devel
 
 <div align="center">
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/fernando053/betleague)
-![GitHub code size](https://img.shields.io/github/languages/code-size/fernando053/betleague)
-![GitHub repo size](https://img.shields.io/github/repo-size/fernando053/betleague)
-![GitHub top language](https://img.shields.io/github/languages/top/fernando053/betleague)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/fernando053/betNANDO)
+![GitHub code size](https://img.shields.io/github/languages/code-size/fernando053/betNANDO)
+![GitHub repo size](https://img.shields.io/github/repo-size/fernando053/betNANDO)
+![GitHub top language](https://img.shields.io/github/languages/top/fernando053/betNANDO)
 
 </div>
 
@@ -638,7 +638,7 @@ Key features:
 • PWA with offline support
 • Complete API documentation
 
-Check it out: github.com/fernando053/betleague
+Check it out: github.com/fernando053/betNANDO
 
 #softwareengineering #webdevelopment #react #nodejs #typescript
 ```
@@ -664,7 +664,7 @@ What I learned:
 
 The project is 100% free and open source. Would love to get your feedback!
 
-GitHub: https://github.com/fernando053/betleague
+GitHub: https://github.com/fernando053/betNANDO
 ```
 
 ---
@@ -712,6 +712,6 @@ If you find this project useful, please consider:
 
 **Made with ⚽ and ❤️ for football friends worldwide**
 
-[⬆ Back to Top](#-betleague)
+[⬆ Back to Top](#-betNANDO)
 
 </div>

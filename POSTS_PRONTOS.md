@@ -36,7 +36,7 @@ I just finished building betNANDO — a full-stack virtual football betting plat
 
 I built most of this with AI assistance (Claude) and I want to be transparent about that. The AI was great for boilerplate and debugging, but I still had to make all architectural decisions and verify everything worked end-to-end.
 
-The entire codebase is open source: https://github.com/fernando053/betleague
+The entire codebase is open source: https://github.com/fernando053/betNANDO
 
 Would love feedback on the code structure and architecture decisions.
 
@@ -56,7 +56,7 @@ Deployed on Vercel + Supabase (free tier). 33 API endpoints, 30 tests.
 
 Honest about what works and what doesn't — README has a full breakdown.
 
-GitHub: https://github.com/fernando053/betleague
+GitHub: https://github.com/fernando053/betNANDO
 
 ---
 
@@ -76,7 +76,7 @@ Key architectural decisions:
 
 Deployed on Vercel serverless + Supabase. $0/month.
 
-https://github.com/fernando053/betleague
+https://github.com/fernando053/betNANDO
 
 ---
 
@@ -133,7 +133,7 @@ Total cost: $0/month
 **Tweet 7:**
 The entire codebase is open source. If you're building something similar, feel free to use it as a reference.
 
-⭐ https://github.com/fernando053/betleague
+⭐ https://github.com/fernando053/betNANDO
 
 #javascript #react #fullstack #open-source #webdev
 
@@ -145,7 +145,7 @@ The entire codebase is open source. If you're building something similar, feel f
 Show HN: betNANDO – Virtual football betting platform for friend groups
 
 **URL:**
-https://github.com/fernando053/betleague
+https://github.com/fernando053/betNANDO
 
 **Corpo:**
 I built a full-stack virtual football betting platform where friends compete with virtual credits on real football matches.
@@ -186,7 +186,7 @@ Stack: React + Vite + Tailwind + Express + Prisma + PostgreSQL, deployed on Verc
 
 33 API endpoints, 11 betting markets, 30 tests. The README has an honest breakdown of what works and what doesn't.
 
-Would love feedback on the architecture: https://github.com/fernando053/betleague
+Would love feedback on the architecture: https://github.com/fernando053/betNANDO
 
 ---
 

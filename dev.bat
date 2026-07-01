@@ -4,7 +4,7 @@ color 0A
 cd /d "%~dp0"
 
 echo ==========================================
-echo          BETLEAGUE - Modo Desenvolvimento
+echo          BETNANDO - Modo Desenvolvimento
 echo ==========================================
 echo.
 
@@ -24,7 +24,7 @@ if %errorlevel% neq 0 (
 echo [0/3] A iniciar PostgreSQL...
 where docker >nul 2>&1
 if %errorlevel% equ 0 (
-    docker ps -q -f name=betleague-db | findstr . >nul 2>&1
+    docker ps -q -f name=betnando-db | findstr . >nul 2>&1
     if %errorlevel% neq 0 (
         docker-compose up -d postgres
         echo A aguardar PostgreSQL...
