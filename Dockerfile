@@ -52,4 +52,6 @@ WORKDIR /app/apps/api
 
 EXPOSE 3001
 
-CMD ["sh", "-c", "npx prisma db push --skip-generate && npx prisma db seed && node dist/index.js"]
+# Render.com runs the build command, then the start command
+# This CMD handles both: run migrations + seed + start server
+CMD sh -c "npx prisma db push --skip-generate && npx prisma db seed && node dist/index.js"
