@@ -6,3 +6,9 @@ dist/
 .DS_Store
 coverage/
 .nyc_output/
+*.db
+*.db-journal
+*.exe
+backups/
+apps/api/dev.db
+apps/api/prisma/dev.db
