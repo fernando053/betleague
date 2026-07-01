@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+
+    <!-- PWA - Chrome/Edge -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#00ff87" />
+    <meta name="application-name" content="BetLeague" />
+    <meta name="msapplication-TileColor" content="#0a0e17" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- PWA - Safari/iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="BetLeague" />
+
+    <!-- Preconnect — resolve DNS early -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Font — non-blocking -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
+
+    <!-- SEO -->
+    <meta name="description" content="BetLeague - Apostas entre amigos com créditos virtuais. FIFA World Cup 2026." />
+    <meta name="keywords" content="apostas, futebol, world cup, virtual, créditos, betleague" />
+    <meta name="author" content="BetLeague" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BetLeague - Apostas Virtuais" />
+    <meta property="og:description" content="Apostas entre amigos com créditos virtuais" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_PT" />
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Critical CSS — splash screen renders instantly -->
+    <style>
+      body { margin: 0; background: #0a0e17; }
+
+      #splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0e17;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+
+      #splash.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .splash-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #00ff87, #00b4ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        box-shadow: 0 0 60px rgba(0, 255, 135, 0.3);
+        animation: splashPulse 1.5s ease-in-out infinite;
+      }
+
+      .splash-text {
+        margin-top: 20px;
+        font-family: system-ui, sans-serif;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: #fff;
+      }
+
+      .splash-text span { color: #00ff87; }
+
+      .splash-dots {
+        margin-top: 16px;
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+      }
+
+      .splash-dots div {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #00ff87;
+        animation: splashDot 1.2s ease-in-out infinite;
+      }
+
+      .splash-dots div:nth-child(2) { animation-delay: 0.15s; }
+      .splash-dots div:nth-child(3) { animation-delay: 0.3s; }
+
+      @keyframes splashPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 255, 135, 0.2); }
+        50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(0, 255, 135, 0.4); }
+      }
+
+      @keyframes splashDot {
+        0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+        40% { opacity: 1; transform: scale(1.2); }
+      }
+    </style>
+
+    <title>BetLeague - Apostas Virtuais</title>
+  </head>
+  <body class="bg-bet-900">
+    <!-- STEP 1: Kill old Service Worker BEFORE anything loads -->
+    <script>
+      // Kill stale SW in dev
+      if (navigator.serviceWorker && location.protocol === 'http:') {
+        navigator.serviceWorker.getRegistrations().then(function(r) {
+          r.forEach(function(reg) { reg.unregister(); });
+        });
+      }
+    </script>
+
+    <!-- Splash screen -->
+    <div id="splash">
+      <div style="text-align:center;">
+        <div class="splash-logo">⚽</div>
+        <div class="splash-text">Bet<span>League</span></div>
+        <div class="splash-dots">
+          <div></div><div></div><div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="root"></div>
+
+    <!-- STEP 2: Now load React -->
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- STEP 3: Hide splash when React mounts -->
+    <script>
+      (function() {
+        var splash = document.getElementById('splash');
+        var hidden = false;
+
+        function hide() {
+          if (hidden || !splash) return;
+          hidden = true;
+          splash.style.transition = 'opacity 0.3s';
+          splash.style.opacity = '0';
+          splash.style.pointerEvents = 'none';
+          setTimeout(function() { if (splash.parentNode) splash.parentNode.removeChild(splash); }, 300);
+        }
+
+        // Method 1: MutationObserver
+        var root = document.getElementById('root');
+        if (root) {
+          new MutationObserver(function(_, obs) {
+            if (root.children.length > 0) { hide(); obs.disconnect(); }
+          }).observe(root, { childList: true });
+        }
+
+        // Method 2: Polling (fallback for Brave/edge cases)
+        var check = setInterval(function() {
+          var r = document.getElementById('root');
+          if (r && r.children.length > 0) { hide(); clearInterval(check); }
+        }, 50);
+
+        // Method 3: Hide after 3s no matter what
+        setTimeout(hide, 3000);
+      })();
+
+      // Register SW in production only
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+      }
+
+    </script>
+  </body>
+</html>

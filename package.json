@@ -1,0 +1,31 @@
+{
+  "name": "betleague",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,json,css}\"",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,json,css}\"",
+    "db:generate": "cd apps/api && npx prisma generate",
+    "db:push": "cd apps/api && npx prisma db push",
+    "db:seed": "cd apps/api && npx tsx prisma/seed.ts",
+    "db:studio": "cd apps/api && npx prisma studio",
+    "test": "turbo test",
+    "test:api": "cd apps/api && npx vitest run",
+    "test:web": "cd apps/web && npx vitest run"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,222 @@
+import { useState, useEffect } from 'react';
+import api from '../lib/api';
+import { useAuth } from '../lib/auth';
+
+interface BetSelection {
+  id: string;
+  matchId: string;
+  market: string;
+  selection: string;
+  odds: number;
+  won: boolean | null;
+  match: {
+    id: string;
+    homeTeam: string;
+    awayTeam: string;
+    status: string;
+    homeScore: number | null;
+    awayScore: number | null;
+    matchDate: string;
+  };
+}
+
+interface Bet {
+  id: string;
+  stake: number;
+  totalOdds: number;
+  potentialReturn: number;
+  status: string;
+  createdAt: string;
+  selections: BetSelection[];
+}
+
+export default function Bets() {
+  const [bets, setBets] = useState<Bet[]>([]);
+  const [filter, setFilter] = useState('all');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const { user, refreshUser } = useAuth();
+
+  useEffect(() => {
+    setLoading(true);
+    setError('');
+    const params = filter === 'all' ? '' : `?status=${filter}`;
+    api.get(`/bets${params}`)
+      .then((r) => setBets(Array.isArray(r.data) ? r.data : r.data.items || []))
+      .catch(() => setError('Erro ao carregar apostas'))
+      .finally(() => setLoading(false));
+  }, [filter]);
+
+  const handleCancel = async (betId: string) => {
+    if (!confirm('Cancelar aposta?')) return;
+    try {
+      await api.post(`/bets/${betId}/cancel`);
+      refreshUser();
+      setBets((prev) => prev.map((b) => b.id === betId ? { ...b, status: 'CANCELLED' } : b));
+    } catch (err: any) {
+      alert(err.response?.data?.error || 'Erro');
+    }
+  };
+
+  const getStatusStyle = (status: string) => {
+    switch (status) {
+      case 'WON': return { bg: 'bg-green-500', text: 'text-green-400', label: 'GANHOU', icon: '✓' };
+      case 'LOST': return { bg: 'bg-red-500', text: 'text-red-400', label: 'PERDEU', icon: '✗' };
+      case 'PENDING': return { bg: 'bg-yellow-500', text: 'text-yellow-400', label: 'PENDENTE', icon: '•' };
+      default: return { bg: 'bg-gray-500', text: 'text-gray-400', label: 'CANCELADO', icon: '—' };
+    }
+  };
+
+  const getSelectionLabel = (s: BetSelection) => {
+    if (s.selection === '1') return s.match.homeTeam;
+    if (s.selection === 'X') return 'Empate';
+    if (s.selection === '2') return s.match.awayTeam;
+    return s.selection;
+  };
+
+  return (
+    <div className="space-y-4 pb-6">
+      {/* Title */}
+      <h1 className="text-xl font-black">Meus Bilhetes</h1>
+
+      {/* Filters */}
+      <div className="flex gap-2 overflow-x-auto pb-1">
+        {[
+          { key: 'all', label: 'Todos', color: 'bg-gray-700 text-gray-300' },
+          { key: 'PENDING', label: 'Pendentes', color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' },
+          { key: 'WON', label: 'Ganhos', color: 'bg-green-500/20 text-green-400 border border-green-500/30' },
+          { key: 'LOST', label: 'Perdidos', color: 'bg-red-500/20 text-red-400 border border-red-500/30' },
+        ].map((f) => (
+          <button
+            key={f.key}
+            onClick={() => setFilter(f.key)}
+            className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all active:scale-95 ${
+              filter === f.key ? f.color : 'bg-gray-800 text-gray-500'
+            }`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Summary Cards */}
+      <div className="grid grid-cols-3 gap-3">
+        <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-3 text-center">
+          <p className="text-2xl font-black text-green-400">{bets.filter((b) => b.status === 'WON').length}</p>
+          <p className="text-[10px] text-green-400/70 uppercase">Ganhos</p>
+        </div>
+        <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3 text-center">
+          <p className="text-2xl font-black text-red-400">{bets.filter((b) => b.status === 'LOST').length}</p>
+          <p className="text-[10px] text-red-400/70 uppercase">Perdidos</p>
+        </div>
+        <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-3 text-center">
+          <p className="text-2xl font-black text-yellow-400">{bets.filter((b) => b.status === 'PENDING').length}</p>
+          <p className="text-[10px] text-yellow-400/70 uppercase">Pendentes</p>
+        </div>
+      </div>
+
+      {/* Error */}
+      {error && (
+        <div className="text-center py-16">
+          <p className="text-neon-red text-sm mb-2">{error}</p>
+          <button onClick={() => setFilter(filter)} className="btn-neon text-xs">Tentar</button>
+        </div>
+      )}
+
+      {/* Loading */}
+      {!error && loading && (
+        <div className="text-center py-20">
+          <div className="inline-block w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      )}
+
+      {/* Empty */}
+      {!loading && bets.length === 0 && (
+        <div className="text-center py-20 bg-gray-800/50 rounded-2xl">
+          <span className="text-5xl block mb-4">🎟️</span>
+          <p className="text-gray-300 font-semibold">Nenhuma aposta</p>
+          <p className="text-gray-600 text-sm mt-2">Visita os jogos e faz a tua primeira aposta</p>
+        </div>
+      )}
+
+      {/* Bets */}
+      <div className="space-y-3">
+        {bets.map((bet) => {
+          const s = getStatusStyle(bet.status);
+          const profit = bet.status === 'WON' ? bet.potentialReturn - bet.stake : bet.status === 'LOST' ? -bet.stake : 0;
+
+          return (
+            <div key={bet.id} className="bg-gray-800 rounded-2xl overflow-hidden">
+              {/* Header */}
+              <div className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full ${s.bg} flex items-center justify-center text-white font-bold text-lg`}>
+                    {s.icon}
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm">{s.label}</p>
+                    <p className="text-[11px] text-gray-500">{bet.selections.length} selec{bet.selections.length === 1 ? 'ção' : 'ções'} — {new Date(bet.createdAt).toLocaleDateString('pt-PT')}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className={`font-bold ${s.text}`}>
+                    {bet.status === 'WON' ? '+' : ''}{profit.toFixed(0)} CR
+                  </p>
+                  <p className="text-[10px] text-gray-600">Stake: {bet.stake} CR</p>
+                </div>
+              </div>
+
+              {/* Selections */}
+              <div className="px-4 pb-4 space-y-2">
+                {bet.selections.map((sel) => (
+                  <div key={sel.id} className={`flex items-center justify-between p-3 rounded-xl text-sm ${
+                    sel.won === true ? 'bg-green-500/10 border border-green-500/20' :
+                    sel.won === false ? 'bg-red-500/10 border border-red-500/20' :
+                    'bg-gray-700/50'
+                  }`}>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold truncate">{sel.match.homeTeam} vs {sel.match.awayTeam}</p>
+                      <p className={`text-xs ${sel.won === true ? 'text-green-400' : sel.won === false ? 'text-red-400' : 'text-gray-400'}`}>
+                        {getSelectionLabel(sel)} @ {sel.odds.toFixed(2)}
+                      </p>
+                    </div>
+                    {sel.match.status === 'FINISHED' && (
+                      <div className="text-right mr-3">
+                        <p className="text-[10px] text-gray-500">Resultado</p>
+                        <p className="font-bold text-sm">{sel.match.homeScore} - {sel.match.awayScore}</p>
+                      </div>
+                    )}
+                    {sel.match.status !== 'FINISHED' && (
+                      <div className="text-right mr-3">
+                        <p className="text-[10px] text-gray-600">Agendado</p>
+                        <p className="text-[10px] text-gray-500">{new Date(sel.match.matchDate).toLocaleDateString('pt-PT')}</p>
+                      </div>
+                    )}
+                    <span className="text-lg">{sel.won === true ? '✅' : sel.won === false ? '❌' : sel.match.status === 'FINISHED' ? '❓' : '⏳'}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Bar */}
+              <div className="px-4 pb-4 flex items-center justify-between">
+                <div className="flex gap-4 text-xs text-gray-500">
+                  <span>Stake: <b className="text-white">{bet.stake} CR</b></span>
+                  <span>Odds: <b className="text-white">{bet.totalOdds.toFixed(2)}</b></span>
+                  <span>Retorno: <b className="text-blue-400">{bet.potentialReturn.toFixed(0)} CR</b></span>
+                </div>
+                {bet.status === 'PENDING' && (
+                  <button
+                    onClick={() => handleCancel(bet.id)}
+                    className="text-xs text-red-400 hover:text-red-300 font-semibold px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 active:scale-95"
+                  >
+                    Cancelar
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
