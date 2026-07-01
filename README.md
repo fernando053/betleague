@@ -10,30 +10,10 @@
 [![Node.js](https://img.shields.io/badge/Node.js-20-339933.svg)](https://nodejs.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-5.14-2D3748.svg)](https://www.prisma.io/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4.svg)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000.svg)](https://vercel.com)
-[![Supabase](https://img.shields.io/badge/Database-Supabase-3FCF8E.svg)](https://supabase.com)
 
 **Bet with virtual credits on real football matches. Compete with friends, climb the rankings, and prove you're the smartest bettor in the group.**
 
-[🚀 Deploy](#-deploy-100-grátis) | [📖 Docs](#-api-endpoints) | [🎯 Features](#-features) | [🛠️ Tech Stack](#-tech-stack)
-
----
-
-### 🏷️ Tags
-
-```
-#football #soccer #betting #fantasy #virtualbetting #sports #react #nodejs #typescript #prisma #postgresql #tailwindcss #express #vite #vercel #supabase #openSource #webdev #fullstack #saas #portfolio #project #api #restapi #jwt #authentication #frontend #backend #devops #docker
-```
-
-### 🔍 SEO Keywords
-
-```
-football betting app, soccer betting platform, virtual betting, friend group betting,
-react betting app, nodejs betting api, typescript betting platform, fantasy football,
-sports betting react, betting web app, prisma postgresql, fullstack betting app,
-free betting platform, open source betting, football predictions, match betting,
-bet slip app, sports analytics, football statistics, group competition
-```
+[🚀 Deploy](#-deploy) | [📖 API Docs](#-api-endpoints) | [🎯 Features](#-features) | [🛠️ Tech Stack](#-tech-stack)
 
 </div>
 
@@ -43,7 +23,7 @@ bet slip app, sports analytics, football statistics, group competition
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        BETLEAGUE ARCHITECTURE                    │
+│                      BETLEAGUE ARCHITECTURE                      │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  ┌─────────────────┐     ┌─────────────────┐                    │
@@ -63,52 +43,85 @@ bet slip app, sports analytics, football statistics, group competition
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### 🔄 Data Flow
+### 🔄 How It Works
 
-```mermaid
-graph LR
-    A[👤 User] -->|Places Bet| B[📱 Frontend]
-    B -->|API Call| C[⚙️ Backend]
-    C -->|Validates| D{Balance OK?}
-    D -->|Yes| E[💳 Deduct Balance]
-    D -->|No| F[❌ Insufficient Funds]
-    E --> G[📝 Create Bet]
-    G --> H{Match Finished?}
-    H -->|No| I[⏳ Pending]
-    H -->|Yes| J{Check Result}
-    J -->|Won| K[💰 Add Winnings]
-    J -->|Lost| L[📉 Mark Lost]
-    J -->|Draw| M[🔄 Refund]
+```
+1. User registers → Gets 100 virtual credits
+2. Browse matches → View odds for 11 betting markets
+3. Build bet slip → Combine up to 20 selections
+4. Place bet → Stake deducted, odds locked from DB
+5. Match settles → System checks results, pays winners
+6. Climb rankings → Compete with friends in groups
 ```
 
 ---
 
-## 🎯 Features
+## 🎯 What Actually Works
 
-### For Players
-| Feature | Description |
-|---------|-------------|
-| 🎮 **Virtual Betting** | Start with 100 credits, bet on real matches |
-| ⚽ **Multiple Markets** | 1X2, Over/Under, BTTS, Correct Score, and more |
-| 🎰 **Bet Slips** | Combine multiple selections for higher odds |
-| 📊 **Live Dashboard** | Track your bets, balance, and performance |
-| 🏆 **Rankings** | Global and group leaderboards |
-| 📈 **Statistics** | Win rate, ROI, profit tracking |
-| 🔔 **Notifications** | Get notified when bets settle |
+### ✅ Fully Implemented
 
-### For Groups
-| Feature | Description |
-|---------|-------------|
-| 👥 **Create Groups** | Invite friends with unique codes |
-| 🏅 **Group Rankings** | Compete within your friend group |
-| 💬 **Social Betting** | See who's winning among friends |
+| Feature | Status | Details |
+|---------|--------|---------|
+| 🔐 **JWT Authentication** | ✅ Working | Login, register, password hashing (bcrypt), token refresh |
+| 👥 **Groups System** | ✅ Working | Create, join via invite code (8-char hex), max 50 members, group rankings |
+| ⚽ **Match Browser** | ✅ Working | Upcoming/live matches, cursor pagination, match details |
+| 🎰 **11 Betting Markets** | ✅ Working | 1X2, Double Chance, Over/Under (0.5-4.5), BTTS, Half-time, Correct Score, Odd/Even |
+| 🎫 **Bet Slips** | ✅ Working | Multi-selection bets (max 20), combined odds, stake presets |
+| 💰 **Virtual Wallet** | ✅ Working | 100 starting credits, balance tracking, profit/ROI stats |
+| 🏆 **Rankings** | ✅ Working | Global top 50 + group leaderboards sorted by balance |
+| 📊 **Statistics** | ✅ Working | Win rate, profit, ROI, total bets, wins, losses |
+| 🔔 **Notifications** | ✅ Working | In-app notifications (bet placed/won/lost/cancelled), mark read |
+| 👑 **Admin Panel** | ✅ Working | Stats dashboard, user CRUD, group management, manual sync |
+| 📱 **PWA** | ✅ Working | Installable, offline fallback, service worker, iOS detection |
+| 📚 **Swagger Docs** | ✅ Working | OpenAPI 3.0 at `/api/docs` |
+| 🛡️ **Security** | ✅ Working | Rate limiting, input validation (Zod), CORS, Helmet |
 
-### For Admins
-| Feature | Description |
-|---------|-------------|
-| 📊 **Analytics Dashboard** | Total bets, users, and activity |
-| 👤 **User Management** | Block/unblock users, adjust balances |
-| ⚙️ **Match Management** | Sync matches, manage odds |
+### ⚠️ Partially Working
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| 📡 **Football Data API** | ⚠️ API key expired | Falls back to hardcoded World Cup matches |
+| 🔄 **Match Sync** | ⚠️ Depends on API | Needs valid `FOOTBALL_DATA_API_KEY` or uses fallback |
+| 🎲 **Odds Generation** | ⚠️ Estimated only | Auto-generates odds with jitter, no real market data |
+
+### ❌ Not Implemented
+
+| Feature | Status | Details |
+|---------|--------|---------|
+| 📡 **Real-time Updates** | ❌ Not built | No WebSockets/SSE, uses 30s polling for notifications |
+| 📧 **Email Notifications** | ❌ Not built | In-app only, no email/SMS/push delivery |
+| 🔑 **Password Reset** | ❌ Not built | No forgot password flow |
+| 🌐 **OAuth Login** | ❌ Not built | Email/password only |
+| 🔍 **Search** | ❌ Not built | No match/user search functionality |
+| ✏️ **Edit Bets** | ❌ Not built | Can only cancel pending bets, not modify |
+| 📈 **Live Odds** | ❌ Not built | Odds are static once generated |
+
+---
+
+## 🎰 Betting Markets
+
+### Auto-Generated Odds (11 markets)
+
+| Market | Selections | Example Odds |
+|--------|------------|--------------|
+| **1X2** | Home, Draw, Away | 1.90, 3.50, 3.80 |
+| **Double Chance** | 1X, X2, 12 | 1.30, 1.80, 1.25 |
+| **Over/Under 0.5** | Over, Under | 1.08, 9.50 |
+| **Over/Under 1.5** | Over, Under | 1.35, 3.20 |
+| **Over/Under 2.5** | Over, Under | 1.85, 1.95 |
+| **Over/Under 3.5** | Over, Under | 2.60, 1.50 |
+| **Over/Under 4.5** | Over, Under | 3.40, 1.30 |
+| **BTTS** | Yes, No | 1.75, 2.05 |
+| **Half-time Result** | Home, Draw, Away | 2.80, 2.20, 3.60 |
+| **Correct Score** | 9 outcomes | 5.50 - 12.00 |
+| **Odd/Even** | Odd, Even | 1.90, 1.90 |
+
+### Scraped Odds (via `odds.json`)
+
+| Market | Description |
+|--------|-------------|
+| Handicap ±0.5, ±1.5 | Asian handicap |
+| Total Goals 0-6 | Exact goal count |
 
 ---
 
@@ -130,6 +143,7 @@ graph LR
 - 🗃️ Zustand 4.5
 - 🌐 React Router 6
 - 📡 Axios 1.7
+- 📱 PWA (Service Worker)
 
 </td>
 <td>
@@ -144,10 +158,9 @@ graph LR
 </td>
 <td>
 
-- 🗄️ PostgreSQL (Prod)
 - 💾 SQLite (Dev)
+- 🗄️ PostgreSQL (Prod)
 - 🔧 Prisma ORM 5.14
-- 🔍 Full-text Search
 
 </td>
 <td>
@@ -156,7 +169,6 @@ graph LR
 - ⚡ Turborepo
 - 🧪 Vitest
 - 📝 ESLint + Prettier
-- 🚀 Vercel (Deploy)
 
 </td>
 </tr>
@@ -164,124 +176,64 @@ graph LR
 
 ---
 
-## 🚀 Deploy (100% Grátis)
+## ⚡ Quick Start
 
-Deploy completo usando **Vercel** + **Supabase** — sem cartão de crédito, sem spin-down.
+### Prerequisites
 
-### Arquitetura de Deploy
-
-```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────┐
-│     🌐 Vercel    │     │   🗄️ Supabase    │     │ cron-job.org │
-│   (Frontend +    │────▶│   (PostgreSQL)   │     │   (Triggers) │
-│    API Server)   │     │                  │     │              │
-└──────────────────┘     └──────────────────┘     └──────┬───────┘
-                                                         │
-                              ┌──────────────────────────┘
-                              │ Ping a cada 30min/2min
-                              ▼
-                       ┌──────────────┐
-                       │ /api/cron/*  │
-                       └──────────────┘
-```
-
-### Setup Rápido
-
-#### 1️⃣ Criar Supabase (PostgreSQL grátis)
-1. Vai a [supabase.com](https://supabase.com) → Login com GitHub
-2. **New Project** → Nome: `betleague`
-3. Vai a **Settings → Database → Connection string → URI**
-4. Copia a URI
-
-#### 2️⃣ Criar Vercel (Hosting grátis)
-1. Vai a [vercel.com](https://vercel.com) → Login com GitHub
-2. **Add New → Project** → Seleciona `fernando053/betleague`
-3. Adiciona Environment Variables:
-
-| Variable | Value |
-|----------|-------|
-| `DATABASE_URL` | URI do Supabase |
-| `JWT_SECRET` | String longa aleatória |
-| `CRON_SECRET` | String longa aleatória |
-| `FRONTEND_URL` | `https://betleague.vercel.app` |
-| `PORT` | `3001` |
-| `NODE_ENV` | `production` |
-
-4. **Deploy**
-
-#### 3️⃣ Criar tabelas no Supabase
-Vai ao SQL Editor do Supabase e executa o schema do Prisma:
-
-```bash
-# Localmente, após configurar o .env com a URI do Supabase:
-npx prisma db push
-npx prisma db seed
-```
-
-#### 4️⃣ Configurar Cron Externo
-1. Vai a [cron-job.org](https://cron-job.org) → Login
-2. Cria 2 jobs:
-
-| Job | URL | Schedule |
-|-----|-----|----------|
-| Sync Matches | `https://betleague.vercel.app/api/cron/sync` | `*/30 * * * *` |
-| Settle Bets | `https://betleague.vercel.app/api/cron/settle` | `*/2 * * * *` |
-
-Headers: `Authorization: Bearer [O_TEU_CRON_SECRET]`
-
-📖 **Guia completo:** Ver [DEPLOY.md](DEPLOY.md)
-
----
-
-## ⚡ Quick Start (Local)
-
-### Pré-requisitos
 - Node.js 20+
-- Docker (opcional, para PostgreSQL)
+- Docker (optional, for PostgreSQL)
 
-### 🐳 Docker (Recomendado)
+### 🐳 Docker (Recommended)
 
 ```bash
-# Iniciar PostgreSQL + API + Web
+# Clone the repository
+git clone https://github.com/fernando053/betleague.git
+cd betleague
+
+# Start PostgreSQL + API + Web
 docker-compose up -d
 
-# Criar tabelas
+# Create tables
 npx prisma db push
 
-# Popular dados de teste
+# Seed test data
 npx prisma db seed
 ```
 
-### 🔧 Manual
+### 🔧 Manual Setup
 
 ```bash
-# Instalar dependências
+# Clone the repository
+git clone https://github.com/fernando053/betleague.git
+cd betleague
+
+# Install dependencies
 npm install
 
-# Configurar base de dados
+# Setup database
 cd apps/api
 cp .env.example .env
-# Editar .env com a tua DATABASE_URL
+# Edit .env with your DATABASE_URL
 
-# Criar tabelas e popular dados
+# Create tables and seed data
 npx prisma db push
 npx tsx prisma/seed.ts
 
-# Iniciar desenvolvimento
+# Start development
 cd ../..
 npm run dev
 ```
 
-### 📱 Acesso
+### 📱 Access
 
-| Serviço | URL |
+| Service | URL |
 |---------|-----|
 | 🌐 Frontend | http://localhost:5555 |
 | ⚙️ API | http://localhost:3001 |
 | 📚 Swagger Docs | http://localhost:3001/api/docs |
 | 🩺 Health Check | http://localhost:3001/api/health |
 
-### 🔑 Credenciais de Teste
+### 🔑 Test Credentials
 
 | Role | Email | Password |
 |------|-------|----------|
@@ -290,7 +242,7 @@ npm run dev
 | 👤 User | maria@example.com | password123 |
 | 👤 User | pedro@example.com | password123 |
 
-**Código de convite do grupo:** `TESTCODE`
+**Group invite code:** `TESTCODE`
 
 ---
 
@@ -301,39 +253,35 @@ betleague/
 ├── 📂 apps/
 │   ├── 📂 api/                    # Express Backend
 │   │   ├── 📂 prisma/
-│   │   │   ├── schema.prisma      # Database schema
+│   │   │   ├── schema.prisma      # Database schema (8 models)
 │   │   │   └── seed.ts            # Test data seeder
 │   │   ├── 📂 src/
 │   │   │   ├── 📂 config/         # Env, Swagger config
 │   │   │   ├── 📂 jobs/           # Cron jobs (sync, settle)
 │   │   │   ├── 📂 middleware/     # Auth, Validation
-│   │   │   ├── 📂 routes/         # API routes
-│   │   │   ├── 📂 services/       # Business logic
+│   │   │   ├── 📂 routes/         # 8 route files
+│   │   │   ├── 📂 services/       # 8 service files
 │   │   │   ├── 📂 lib/            # Prisma client
 │   │   │   └── index.ts           # Entry point
-│   │   ├── 📂 tests/              # API tests
-│   │   ├── Dockerfile
+│   │   ├── 📂 tests/              # 17 API tests
 │   │   └── package.json
 │   │
 │   └── 📂 web/                    # React Frontend
 │       ├── 📂 src/
-│       │   ├── 📂 components/     # Reusable UI
-│       │   ├── 📂 pages/          # Route pages
-│       │   ├── 📂 hooks/          # Custom hooks
-│       │   ├── 📂 lib/            # API client, Auth
-│       │   ├── 📂 store/          # Zustand stores
+│       │   ├── 📂 components/     # BetSlip, Layout, Navbar
+│       │   ├── 📂 pages/          # 14 page components
+│       │   ├── 📂 hooks/          # useIOS detection
+│       │   ├── 📂 lib/            # API client, Auth context
+│       │   ├── 📂 store/          # Zustand bet slip store
 │       │   └── main.tsx           # Entry point
-│       ├── 📂 public/             # Static assets
-│       ├── 📂 tests/              # Frontend tests
-│       ├── Dockerfile
+│       ├── 📂 public/             # PWA assets, icons
+│       ├── 📂 tests/              # 3 Web tests
 │       └── package.json
 │
-├── 📄 vercel.json                  # Vercel config
-├── 📄 docker-compose.yml           # Docker config
-├── 📄 turbo.json                   # Monorepo config
-├── 📄 .eslintrc.json               # Linting
-├── 📄 .prettierrc                  # Formatting
-└── 📄 package.json                 # Root package.json
+├── 📄 docker-compose.yml          # PostgreSQL + API + Web
+├── 📄 turbo.json                  # Monorepo config
+├── 📄 .eslintrc.json              # Linting
+└── 📄 .prettierrc                 # Formatting
 ```
 
 ---
@@ -341,107 +289,112 @@ betleague/
 ## 📡 API Endpoints
 
 <details>
-<summary><strong>🔐 Authentication</strong></summary>
+<summary><strong>🔐 Authentication (2 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login |
-
-</details>
-
-<details>
-<summary><strong>👤 Users</strong></summary>
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/users/me` | Get profile |
-| PATCH | `/api/users/me` | Update profile |
-| POST | `/api/users/change-password` | Change password |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | Public | Register new user (100 CR free) |
+| POST | `/api/auth/login` | Public | Login with email/password |
 
 </details>
 
 <details>
-<summary><strong>👥 Groups</strong></summary>
+<summary><strong>👤 Users (3 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/groups` | Create group |
-| POST | `/api/groups/join` | Join by invite code |
-| GET | `/api/groups` | List user's groups |
-| GET | `/api/groups/:id` | Group details |
-| POST | `/api/groups/:id/leave` | Leave group |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/users/me` | JWT | Get current user profile |
+| PATCH | `/api/users/me` | JWT | Update profile (name, email) |
+| POST | `/api/users/change-password` | JWT | Change password |
 
 </details>
 
 <details>
-<summary><strong>⚽ Matches</strong></summary>
+<summary><strong>👥 Groups (4 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/matches` | Upcoming matches (paginated) |
-| GET | `/api/matches/live` | Live/started matches |
-| GET | `/api/matches/:id` | Match details + odds |
-
-</details>
-
-<details>
-<summary><strong>🎰 Bets</strong></summary>
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/bets` | Place bet |
-| GET | `/api/bets` | List bets (paginated) |
-| GET | `/api/bets/active` | Active/pending bets |
-| GET | `/api/bets/history` | Settled bets |
-| POST | `/api/bets/:id/cancel` | Cancel pending bet |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/groups` | JWT | Create group (auto-generates invite code) |
+| POST | `/api/groups/join` | JWT | Join group via 8-char invite code |
+| GET | `/api/groups` | JWT | List user's groups |
+| GET | `/api/groups/:id` | JWT | Group detail + members ranked by balance |
+| DELETE | `/api/groups/:id` | JWT | Delete group (owner only) |
 
 </details>
 
 <details>
-<summary><strong>🏆 Rankings</strong></summary>
+<summary><strong>⚽ Matches (5 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/rankings/global` | Global leaderboard |
-| GET | `/api/rankings/group/:id` | Group leaderboard |
-
-</details>
-
-<details>
-<summary><strong>🔔 Notifications</strong></summary>
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/notifications` | List notifications |
-| PATCH | `/api/notifications/:id/read` | Mark as read |
-| POST | `/api/notifications/read-all` | Mark all as read |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/matches` | JWT | Upcoming matches (cursor pagination) |
+| GET | `/api/matches/live` | JWT | Live/started matches |
+| GET | `/api/matches/:id` | JWT | Match detail + all odds |
+| POST | `/api/matches/sync` | Admin | Sync matches from football-data.org |
+| POST | `/api/matches/sync-odds` | Admin | Apply scraped odds from odds.json |
 
 </details>
 
 <details>
-<summary><strong>👑 Admin</strong></summary>
+<summary><strong>🎰 Bets (5 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/admin/stats` | Dashboard statistics |
-| GET | `/api/admin/users` | List all users |
-| PATCH | `/api/admin/users/:id` | Update user |
-| POST | `/api/admin/users/:id/block` | Block/unblock user |
-| GET | `/api/admin/groups` | List all groups |
-| POST | `/api/admin/sync-matches` | Force match sync |
-| POST | `/api/admin/scrape-odds` | Apply scraped odds |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/bets` | JWT | Place bet (max 20 selections) |
+| GET | `/api/bets` | JWT | List user's bets (cursor pagination) |
+| GET | `/api/bets/active` | JWT | List pending bets |
+| GET | `/api/bets/:id` | JWT | Get bet detail |
+| POST | `/api/bets/:id/cancel` | JWT | Cancel pending bet (refunds stake) |
+| POST | `/api/bets/settle` | Admin | Manual settlement trigger |
 
 </details>
 
 <details>
-<summary><strong>🔄 Cron Endpoints</strong></summary>
+<summary><strong>🏆 Rankings (2 endpoints)</strong></summary>
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/cron/sync` | Sync matches (protected) |
-| GET | `/api/cron/settle` | Settle bets (protected) |
-| GET | `/api/health` | Health check |
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/rankings/global` | JWT | Global top 50 by balance |
+| GET | `/api/rankings/group/:id` | JWT | Group rankings |
+
+</details>
+
+<details>
+<summary><strong>🔔 Notifications (4 endpoints)</strong></summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/notifications` | JWT | List notifications (max 50) |
+| GET | `/api/notifications/unread-count` | JWT | Get unread count |
+| PATCH | `/api/notifications/:id/read` | JWT | Mark as read |
+| POST | `/api/notifications/read-all` | JWT | Mark all as read |
+
+</details>
+
+<details>
+<summary><strong>👑 Admin (8 endpoints)</strong></summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/admin/stats` | Admin | Dashboard statistics |
+| GET | `/api/admin/users` | Admin | List all users (paginated) |
+| POST | `/api/admin/users` | Admin | Create user with custom balance |
+| PATCH | `/api/admin/users/:id` | Admin | Update user (balance, block, role) |
+| DELETE | `/api/admin/users/:id` | Admin | Delete user |
+| GET | `/api/admin/groups` | Admin | List all groups |
+| DELETE | `/api/admin/groups/:id` | Admin | Delete group |
+| POST | `/api/admin/sync-matches` | Admin | Force match sync |
+
+</details>
+
+<details>
+<summary><strong>🔄 Cron (2 endpoints)</strong></summary>
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/cron/sync` | Bearer | Sync matches (for external cron) |
+| GET | `/api/cron/settle` | Bearer | Settle pending bets (for external cron) |
+| GET | `/api/health` | Public | Health check |
 
 </details>
 
@@ -451,11 +404,11 @@ betleague/
 
 | Variable | Required | Description | Default |
 |----------|----------|-------------|---------|
-| `DATABASE_URL` | ✅ | PostgreSQL connection string | - |
+| `DATABASE_URL` | ✅ | PostgreSQL/SQLite connection string | - |
 | `JWT_SECRET` | ✅ | JWT signing secret | - |
 | `JWT_EXPIRES_IN` | ❌ | Token expiration | `7d` |
 | `PORT` | ❌ | Server port | `3001` |
-| `FOOTBALL_DATA_API_KEY` | ❌ | Football-Data.org API key | - |
+| `FOOTBALL_DATA_API_KEY` | ❌ | Football-Data.org API key (expired) | - |
 | `FRONTEND_URL` | ❌ | CORS allowed origin | `http://localhost:5173` |
 | `CRON_SECRET` | ❌ | Secret for cron endpoints | - |
 
@@ -464,147 +417,131 @@ betleague/
 ## 🧪 Testing
 
 ```bash
-# Run all tests
+# Run all tests (30 total)
 npm test
 
-# Run API tests only
+# Run API tests only (27 tests)
 npm run test:api
 
-# Run Web tests only
+# Run Web tests only (3 tests)
 npm run test:web
-
-# Run tests in watch mode
-cd apps/api && npx vitest
 ```
 
 ### Test Coverage
 
-| Suite | Tests | Description |
-|-------|-------|-------------|
-| `schemas.test.ts` | 5 | Zod schema validation |
-| `bet-logic.test.ts` | 11 | Bet settlement logic |
-| `env.test.ts` | 11 | Environment config |
-| `localStorage.test.ts` | 2 | localStorage mock |
+| Suite | Tests | What's Tested |
+|-------|-------|---------------|
+| `schemas.test.ts` | 5 | Zod validation schemas |
+| `bet-logic.test.ts` | 11 | Bet settlement logic (all markets) |
+| `env.test.ts` | 11 | Environment config, validation |
+| `localStorage.test.ts` | 2 | localStorage browser mock |
 | `hooks.test.ts` | 1 | Hook exports |
 
 ---
 
-<div align="center">
+## 📊 Database Schema
 
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=fernando053/betleague&type=Date)](https://star-history.com/#fernando053/betleague&Date)
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│    User     │────▶│    Group    │◀────│ GroupMember  │
+│             │     │             │     │             │
+│ • balance   │     │ • name      │     │ • groupId   │
+│ • betsCount │     │ • inviteCode│     │ • userId    │
+│ • betsWon   │     │ • adminId   │     │ • joinedAt  │
+│ • roi       │     └─────────────┘     └─────────────┘
+│ • profit    │
+│ • role      │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│     Bet     │────▶│BetSelection │◀────│    Match    │
+│             │     │             │     │             │
+│ • stake     │     │ • market    │     │ • homeTeam  │
+│ • totalOdds │     │ • selection │     │ • awayTeam  │
+│ • potential │     │ • odds      │     │ • status    │
+│ • status    │     │ • won       │     │ • matchDate │
+└─────────────┘     └─────────────┘     └──────┬──────┘
+                                               │
+                                               ▼
+                                        ┌─────────────┐
+                                        │    Odds     │
+                                        │             │
+                                        │ • market    │
+                                        │ • selection │
+                                        │ • value     │
+                                        │ • source    │
+                                        └─────────────┘
+```
 
 ---
 
-## 🤝 Contributing
+## 🚀 Deploy
 
-Contributions are welcome! Feel free to open issues and pull requests.
+### Free Options (No Credit Card)
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+| Platform | Type | Limitations |
+|----------|------|-------------|
+| **Vercel** | Serverless | 10s timeout, no persistent cron |
+| **Render.com** | Web Service | 15min spin-down on free tier |
+| **Supabase** | PostgreSQL | 500MB storage, 500K rows |
+
+### Deploy Architecture (Vercel + Supabase)
+
+```
+┌──────────────────┐     ┌──────────────────┐     ┌──────────────┐
+│     🌐 Vercel    │     │   🗄️ Supabase    │     │ cron-job.org │
+│   (Frontend +    │────▶│   (PostgreSQL)   │     │   (Triggers) │
+│    API Server)   │     │                  │     │              │
+└──────────────────┘     └──────────────────┘     └──────┬───────┘
+                                                         │
+                              ┌──────────────────────────┘
+                              │ Ping every 30min/2min
+                              ▼
+                       ┌──────────────┐
+                       │ /api/cron/*  │
+                       └──────────────┘
+```
+
+📖 **Complete guide:** See [DEPLOY.md](DEPLOY.md)
 
 ---
 
-## 📊 GitHub Stats
+## 📄 License
+
+MIT License
+
+```
+MIT License
+
+Copyright (c) 2026 BetLeague
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
 
 <div align="center">
 
 ![GitHub stars](https://img.shields.io/github/stars/fernando053/betleague?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/fernando053/betleague?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/fernando053/betleague?style=social)
 ![GitHub last commit](https://img.shields.io/github/last-commit/fernando053/betleague)
-![GitHub issues](https://img.shields.io/github/issues/fernando053/betleague)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/fernando053/betleague)
-
-</div>
-
----
-
-## 📢 Share This Project
-
-If you found this project useful, please give it a ⭐ and share it!
-
-**Share on Twitter/X:**
-```
-⚽ Check out BetLeague - a virtual football betting platform for friend groups!
-
-🔥 Features:
-• Bet with virtual credits
-• Multiple betting markets
-• Group competitions
-• Live rankings
-
-Built with React + Node.js + PostgreSQL
-
-#football #betting #react #nodejs #typescript #opensource #webdev #fullstack
-```
-
-**Share on LinkedIn:**
-```
-🚀 Excited to share BetLeague - a full-stack virtual football betting platform!
-
-Tech Stack:
-⚛️ React 18 + TypeScript
-🟢 Node.js + Express
-🗄️ PostgreSQL + Prisma
-🎨 Tailwind CSS
-🚀 Deployed on Vercel
-
-100% free and open source! Check it out 👇
-
-#football #betting #react #nodejs #typescript #prisma #postgresql #fullstack #webdev #opensource
-```
-
----
-
-## 🎯 Roadmap
-
-- [ ] Real-time match updates with WebSockets
-- [ ] Live betting during matches
-- [ ] Push notifications
-- [ ] Mobile app (React Native)
-- [ ] AI-powered betting tips
-- [ ] Multi-language support (PT, EN, ES)
-- [ ] Dark/Light theme toggle
-- [ ] Export betting history to CSV/PDF
-- [ ] Integration with more football APIs
-- [ ] Tournament mode with brackets
-
----
-
-## 💡 Ideas for Improvement
-
-Have ideas? Open an [issue](https://github.com/fernando053/betleague/issues) or submit a PR!
-
----
-
-## 📜 Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for a list of changes.
-
----
-
-## ⚠️ Disclaimer
-
-This is a **virtual betting platform** for educational and entertainment purposes only. No real money is involved. Please bet responsibly.
-
----
-
-<div align="center">
-
-### 🙏 Support
-
-If you like this project, consider:
-- ⭐ Starring the repo
-- 🐛 Reporting bugs
-- 💡 Suggesting features
-- 🤝 Contributing code
-
----
 
 **Made with ⚽ and ❤️ for football friends worldwide**
 
