@@ -55,7 +55,7 @@ export default function InstallBanner() {
               <span className="text-2xl">⚽</span>
             </div>
             <div className="flex-1">
-              <p className="font-bold text-sm text-white">Instalar BetLeague</p>
+              <p className="font-bold text-sm text-white">Instalar betNANDO</p>
               <p className="text-xs text-gray-400">Acesso rápido ao ecrã inicial</p>
             </div>
             <button onClick={dismiss} className="text-gray-500 p-1">✕</button>
@@ -84,7 +84,7 @@ export default function InstallBanner() {
                 <span className="text-2xl">⚽</span>
               </div>
               <div className="flex-1">
-                <p className="font-bold text-sm text-white">Instalar BetLeague</p>
+                <p className="font-bold text-sm text-white">Instalar betNANDO</p>
                 <p className="text-xs text-gray-400">{isIOS ? 'Toca em baixo para ver como' : 'Menu do browser → Instalar app'}</p>
               </div>
               <button onClick={dismiss} className="text-gray-500 p-1">✕</button>

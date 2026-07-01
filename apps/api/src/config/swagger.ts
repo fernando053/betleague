@@ -5,7 +5,7 @@ const options: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'BetLeague API',
+      title: 'betNANDO API',
       version,
       description: 'Virtual football betting platform API for friend groups',
     },

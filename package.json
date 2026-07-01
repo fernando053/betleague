@@ -1,5 +1,5 @@
 {
-  "name": "betleague",
+  "name": "betnando",
   "private": true,
   "workspaces": [
     "apps/*",

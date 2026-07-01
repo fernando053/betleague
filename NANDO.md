@@ -4,7 +4,7 @@ Aqui está um prompt completo que podes usar no ChatGPT, Claude, Cursor, Lovable
 
 # PROMPT
 
-Cria uma aplicação web moderna e responsiva chamada **BetLeague**, focada em apostas entre amigos com créditos virtuais.
+Cria uma aplicação web moderna e responsiva chamada **betNANDO**, focada em apostas entre amigos com créditos virtuais.
 
 ## Objetivo
 

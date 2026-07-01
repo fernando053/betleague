@@ -10,11 +10,11 @@ async function main() {
   const userPassword = await bcrypt.hash('password123', 12);
 
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@betleague.com' },
+    where: { email: 'admin@betnando.com' },
     update: {},
     create: {
       name: 'Admin',
-      email: 'admin@betleague.com',
+      email: 'admin@betnando.com',
       passwordHash: adminPassword,
       role: 'ADMIN',
       balance: 100,
@@ -63,7 +63,7 @@ async function main() {
   }
 
   console.log('Seed completed!');
-  console.log(`Admin: admin@betleague.com / admin123`);
+  console.log(`Admin: admin@betnando.com / admin123`);
   console.log(`Users: joao@example.com / password123`);
   console.log(`Group invite code: TESTCODE`);
 }

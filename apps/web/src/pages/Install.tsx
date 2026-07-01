@@ -110,7 +110,7 @@ export default function Install() {
             <h2 className="text-lg font-bold">Instalar App</h2>
             <p className="text-gray-400 text-sm">Adiciona ao ecrã inicial para acesso rápido</p>
             <button onClick={handleInstall} className="btn-neon-solid w-full">
-              Instalar BetLeague
+              Instalar betNANDO
             </button>
           </div>
         ) : (

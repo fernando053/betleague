@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚽ BetLeague
+# ⚽ betNANDO
 
 ### Virtual Football Betting Platform for Friend Groups
 
@@ -40,13 +40,13 @@ football betting soccer virtual-betting fantasy-football sports react nodejs typ
 
 | Role | Email | Password |
 |------|-------|----------|
-| 👑 Admin | admin@betleague.com | admin123 |
+| 👑 Admin | admin@betnando.com | admin123 |
 | 👤 User | joao@example.com | password123 |
 | 👤 User | maria@example.com | password123 |
 
 ---
 
-## 💡 Why BetLeague?
+## 💡 Why betNANDO?
 
 > "I wanted to build a real-world full-stack application that demonstrates modern web development practices while solving a fun problem: how friend groups can bet on football matches without risking real money."
 
@@ -283,7 +283,7 @@ npm run dev
 
 | Role | Email | Password |
 |------|-------|----------|
-| 👑 Admin | admin@betleague.com | admin123 |
+| 👑 Admin | admin@betnando.com | admin123 |
 | 👤 User | joao@example.com | password123 |
 | 👤 User | maria@example.com | password123 |
 | 👤 User | pedro@example.com | password123 |
@@ -604,7 +604,7 @@ Help spread the word! Share on your favorite platform:
 
 **Twitter/X:**
 ```
-⚽ Built BetLeague - a full-stack virtual football betting platform!
+⚽ Built betNANDO - a full-stack virtual football betting platform!
 
 Tech: React + TypeScript + Node.js + Prisma + PostgreSQL
 
@@ -622,7 +622,7 @@ Features:
 
 **LinkedIn:**
 ```
-🚀 Excited to share my latest project: BetLeague!
+🚀 Excited to share my latest project: betNANDO!
 
 A full-stack virtual football betting platform built with:
 ⚛️ React 18 + TypeScript
@@ -647,7 +647,7 @@ Check it out: github.com/fernando053/betleague
 ```
 I built a full-stack football betting platform for friend groups
 
-Hey everyone! I wanted to share a project I've been working on - BetLeague, a virtual football betting platform where friends can compete with virtual credits on real matches.
+Hey everyone! I wanted to share a project I've been working on - betNANDO, a virtual football betting platform where friends can compete with virtual credits on real matches.
 
 Tech stack:
 - Frontend: React 18 + TypeScript + Tailwind CSS

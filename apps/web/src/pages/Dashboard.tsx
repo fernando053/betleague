@@ -76,7 +76,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-black">Olá, {user?.name?.split(' ')[0]} 👋</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Bem-vindo ao BetLeague</p>
+          <p className="text-xs text-gray-500 mt-0.5">Bem-vindo ao betNANDO</p>
         </div>
         <Link to="/matches" className="bg-neon-green text-black font-bold px-4 py-2 rounded-xl text-sm active:scale-95 transition-transform">
           Apostar →

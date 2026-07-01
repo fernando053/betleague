@@ -1,5 +1,5 @@
 @echo off
-title BetLeague Dev
+title betNANDO Dev
 color 0A
 cd /d "%~dp0"
 
@@ -38,14 +38,14 @@ if %errorlevel% equ 0 (
 
 :: Start API
 echo [1/3] A iniciar API...
-start "BetLeague API" /D "%~dp0apps\api" cmd /k "title BetLeague API && color 0B && npx tsx watch src/index.ts"
+start "betNANDO API" /D "%~dp0apps\api" cmd /k "title betNANDO API && color 0B && npx tsx watch src/index.ts"
 
 :: Wait for API
 timeout /t 2 /nobreak >nul
 
 :: Start Web
 echo [2/3] A iniciar Web...
-start "BetLeague Web" /D "%~dp0apps\web" cmd /k "title BetLeague Web && color 0D && npx vite --host"
+start "betNANDO Web" /D "%~dp0apps\web" cmd /k "title betNANDO Web && color 0D && npx vite --host"
 
 echo.
 echo ==========================================
@@ -54,7 +54,7 @@ echo   Web  : http://localhost:5555
 echo   Docs : http://localhost:3001/api/docs
 echo ==========================================
 echo.
-echo   Admin: admin@betleague.com / admin123
+echo   Admin: admin@betnando.com / admin123
 echo   User : joao@example.com / password123
 echo.
 echo   Fechar esta janela nao fecha os servidores.

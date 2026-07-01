@@ -1,4 +1,4 @@
-# Deploy BetLeague — Vercel + Supabase (100% grátis, sem cartão)
+# Deploy betNANDO — Vercel + Supabase (100% grátis, sem cartão)
 
 ## Arquitetura
 
@@ -63,7 +63,7 @@ Depois do primeiro deploy (pode dar erro — é normal):
 2. Cola e executa este SQL para criar as tabelas:
 
 ```sql
--- Tabelas do BetLeague (Prisma schema)
+-- Tabelas do betNANDO (Prisma schema)
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
   name TEXT NOT NULL,
@@ -183,7 +183,7 @@ Depois do redeploy funcionar:
 -- (bcrypt hash gerado previamente)
 INSERT INTO users (id, name, email, password_hash, role, balance)
 VALUES
-  ('admin-001', 'Admin', 'admin@betleague.com', '$2a$12$LJ3m4yPnVSRHLgM5e0Uz6OQxZ5e6Q6O5Q5O5Q5O5Q5O5Q5O5Q5O', 'ADMIN', 100),
+  ('admin-001', 'Admin', 'admin@betnando.com', '$2a$12$LJ3m4yPnVSRHLgM5e0Uz6OQxZ5e6Q6O5Q5O5Q5O5Q5O5Q5O5Q5O', 'ADMIN', 100),
   ('user-001', 'João Silva', 'joao@example.com', '$2a$12$LJ3m4yPnVSRHLgM5e0Uz6OQxZ5e6Q6O5Q5O5Q5O5Q5O5Q5O5Q5O', 'USER', 100),
   ('user-002', 'Maria Santos', 'maria@example.com', '$2a$12$LJ3m4yPnVSRHLgM5e0Uz6OQxZ5e6Q6O5Q5O5Q5O5Q5O5Q5O5Q5O', 'USER', 100)
 ON CONFLICT (email) DO NOTHING;
@@ -227,7 +227,7 @@ ON CONFLICT (email) DO NOTHING;
 
 ## Credenciais de teste
 
-- **Admin:** `admin@betleague.com` / `admin123`
+- **Admin:** `admin@betnando.com` / `admin123`
 - **User:** `joao@example.com` / `password123`
 
 ---

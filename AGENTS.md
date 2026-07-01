@@ -2,7 +2,7 @@
 
 ## Overview
 
-BetLeague is a virtual football betting platform for friend groups. Users bet with 100 virtual credits on real football matches. Monorepo managed with **Turborepo** (`apps/api` + `apps/web`).
+betNANDO is a virtual football betting platform for friend groups. Users bet with 100 virtual credits on real football matches. Monorepo managed with **Turborepo** (`apps/api` + `apps/web`).
 
 ## Essential Commands
 
@@ -121,6 +121,6 @@ FRONTEND_URL        # Optional. Default "http://localhost:5173" (CORS origin)
 
 ## Test Credentials (Seed)
 
-- Admin: `admin@betleague.com` / `admin123`
+- Admin: `admin@betnando.com` / `admin123`
 - User: `joao@example.com` / `password123`
 - Group invite code: `TESTCODE`

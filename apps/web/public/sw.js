@@ -1,4 +1,4 @@
-const CACHE_NAME = 'betleague-v3';
+const CACHE_NAME = 'betnando-v1';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
